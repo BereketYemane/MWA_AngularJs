@@ -1,6 +1,10 @@
+require("dotenv").config({"path":".env"});
 const mongoose = require("mongoose");
-const dbName = "meanGamesDB";
-const dbURL = "mongodb://localhost:27017/"+dbName;
+
+const dbName = process.env.DATABASE_NAME;
+
+const dbURL = process.env.DATABASE_URL+dbName;
+
 require("./games-model");
 
 mongoose.connect(dbURL);

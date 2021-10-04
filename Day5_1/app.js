@@ -1,11 +1,17 @@
+require("dotenv").config({"path":".env"});
 const express = require("express");
 const path = require("path");
 require("./api/data/dbConnection");
 const route = require("./api/routes");
 
-
+console.log("PORT from env is", process.env.PORT);
 const app = express();
-app.set("port",3000);
+
+if(isNaN(process.env.PORT)){
+    process.env.PORT=6000;
+}
+process.env.PORT = process.env.PORT || 6000
+app.set("port",process.env.PORT);
 
 app.use(function(req,res,next){
     console.log(req.method,req.url);
