@@ -1,0 +1,21 @@
+{
+  "name": "day5_6",
+  "version": "1.0.0",
+  "description": "Mongoose application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Express",
+    "Node",
+    "Mongoose"
+  ],
+  "author": "Bereket",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8"
+  }
+}
