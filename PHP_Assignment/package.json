@@ -1,0 +1,21 @@
+{
+  "name": "php_assignment",
+  "version": "1.0.0",
+  "description": "This is a node based personal hobby project",
+  "main": "phpApp.js",
+  "scripts": {
+    "start": "node phpApp.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "mongoose",
+    "mongodb",
+    "express"
+  ],
+  "author": "Bereket Yemane",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.0.8"
+  }
+}
