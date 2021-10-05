@@ -65,22 +65,9 @@ module.exports.getStudentCourse = function (req, res) {
                     return;
                 }
                 else {
-                    console.log("Found courses");
-                    var courseFound = false;
-                    for (let i = 0; i < student.courses.length; i++) {
-                        console.log(student.courses[i]);
-                        if (student.courses[i].id == courseID) {
-                            console.log("Course found");
-                            courseFound = true;
-                            res.status(200).json(student.courses[i]);
-                            return;
-                        }
-                    }
-                    if (!courseFound) {
-                        console.log("Course ID doesn't exist");
-                        res.status(404).json({ "Message": "Course ID doesn't exist" });
-                        return;
-                    }
+                    const course = student.courses.id(courseID);
+                    console.log("course found");
+                    res.status(200).json(course);
                 }
             }
         });
