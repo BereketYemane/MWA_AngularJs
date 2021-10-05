@@ -5,7 +5,10 @@ const reviewSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    review:String,
+    review:{
+        type:String,
+        required:true
+    },
     date:{
         type:Date,
         "default":Date.now

@@ -17,7 +17,7 @@ router.route("/games/:gameID/publisher").get(publisher.getGamePublisher)
 .delete(publisher.deleteGamePublisher);
 
 router.route("/games/:gameID/reviews").get(reviews.getAllGameReviews)
-.post(reviews.addGameReviews);
+.post(reviews.addGameReview);
 
 router.route("/games/:gameID/reviews/:reviewID").get(reviews.getOneGameReview)
 .put(reviews.updateGameReview)  
