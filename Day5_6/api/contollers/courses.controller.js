@@ -39,46 +39,46 @@ module.exports.getStudentCourse = function (req, res) {
     const studentID = req.params.studentID;
     const courseID = req.params.courseID;
 
-    if(!mongoose.isValidObjectId(studentID)){
+    if (!mongoose.isValidObjectId(studentID)) {
         console.log("Invalid student ID");
         res.status(404).json({ "Message": "Invalid student ID" });
         return;
     }
-    if(!mongoose.isValidObjectId(courseID)){
+    if (!mongoose.isValidObjectId(courseID)) {
         console.log("Invalid course ID");
         res.status(404).json({ "Message": "Invalid course ID" });
         return;
     }
-    else{
-        console.log("studentID",studentID);
-        Students.findById(studentID).select("courses").exec(function(err,student){
+    else {
+        console.log("studentID", studentID);
+        Students.findById(studentID).select("courses").exec(function (err, student) {
 
-            if(err){
+            if (err) {
                 console.log("Error finding course");
-                res.status(500).json({"Message":"Sorry! ... Error finding course"})
+                res.status(500).json({ "Message": "Sorry! ... Error finding course" })
                 return;
             }
-            else{
-                if(!student){
+            else {
+                if (!student) {
                     console.log("studentID doesn't exist");
-                    res.status(404).json({"Message":"studentID doesn't exist"});
+                    res.status(404).json({ "Message": "studentID doesn't exist" });
                     return;
                 }
-                else{
+                else {
                     console.log("Found courses");
                     var courseFound = false;
-                    for(let i=0;i<student.courses.length;i++){
+                    for (let i = 0; i < student.courses.length; i++) {
                         console.log(student.courses[i]);
-                        if(student.courses[i].id==courseID){
+                        if (student.courses[i].id == courseID) {
                             console.log("Course found");
-                            courseFound=true;
+                            courseFound = true;
                             res.status(200).json(student.courses[i]);
                             return;
                         }
                     }
-                    if(!courseFound){
+                    if (!courseFound) {
                         console.log("Course ID doesn't exist");
-                        res.status(404).json({"Message":"Course ID doesn't exist"});
+                        res.status(404).json({ "Message": "Course ID doesn't exist" });
                         return;
                     }
                 }
@@ -106,18 +106,18 @@ module.exports.addStudentCourse = function (req, res) {
                 res.status(404).json({ "Message": "Student ID not found" });
             }
             else {
-                const newCourse = req.body.course;
-                    student.courses.push(newCourse);
-                    student.save(function (err, addedCourse) {
-                        if (err) {
-                            console.log("Sorry! couldn't add course");
-                            res.status(500).json({ "Message": "Sorry! couldn't add course" });
-                        }
-                        else {
-                            console.log("course successfully added");
-                            res.status(200).json({ "Message": "course successfully added", addedCourse});
-                        }
-                    }); 
+                const newCourse = req.body;
+                student.courses.push(newCourse);
+                student.save(function (err, addedCourse) {
+                    if (err) {
+                        console.log("Sorry! couldn't add course");
+                        res.status(500).json({ "Message": "Sorry! couldn't add course" });
+                    }
+                    else {
+                        console.log("course successfully added");
+                        res.status(200).json({ "Message": "course successfully added", addedCourse });
+                    }
+                });
             }
         });
     }
@@ -148,31 +148,17 @@ module.exports.deleteStudentCourse = function (req, res) {
                 res.status(404).json({ "Message": "Student id not found" });
             }
             else {
-                console.log(student);
                 console.log("Found Courses");
-                var courseFound = false;
-                for (let i = 0; i < student.courses.length; i++) {
-                    if (student.courses[i].id == courseID) {
-                        console.log("Course found");
-                        courseFound = true;
-                        student.courses[i].remove();
-                        student.save(function (err, deletedCourse) {
-                            if (err) {
-                                console.log("Error deleting course");
-                                res.status(500).json({ "Message": "Sorry! ... Error deleting course" });
-                            }
-                            else {
-                                res.status(200).json({ "Message": "Student course successfully deleted",deletedCourse});
-                            }
-                        });
+                student.courses.id(courseID).remove();
+                student.save(function (err, deletedCourse) {
+                    if (err) {
+                        console.log("Error deleting course");
+                        res.status(500).json({ "Message": "Sorry! ... Error deleting course" });
                     }
-                }
-                if (!courseFound) {
-                    console.log("course ID doesn't exist");
-                    res.status(404).json({ "Message": "course ID doesn't exist" });
-                    return;
-                }
-
+                    else {
+                        res.status(200).json({ "Message": "Student course successfully deleted", deletedCourse });
+                    }
+                });
             }
         });
     }
@@ -198,34 +184,24 @@ module.exports.updateStudentCourse = function (req, res) {
                 res.status(500).json({ "Message": "Sorry! ... Error finding a student" });
                 return;
             }
-            else if(!student){
+            else if (!student) {
                 console.log(("Student ID doesn't exist"));
-                res.status(404).json({"Message":"Student ID not found"});
+                res.status(404).json({ "Message": "Student ID not found" });
             }
             else {
                 console.log("Found courses");
-                var courseFound = false;
-                for (let i = 0; i < student.courses.length; i++) {
-                    if (student.courses[i].id == courseID) {
-                        console.log("Course found");
-                        courseFound = true;
-                        student.courses[i]=req.body.course;
-                        student.save(function (err, student) {
-                            if (err) {
-                                console.log("Error updating student course");
-                                res.status(500).json({ "Message": "Sorry! ... Error updating student course" });
-                            }
-                            else {
-                                res.status(200).json({ "Message": "Student course successfully updated", student });
-                            }
-                        });
+                student.courses.id(courseID).name = req.body.name
+                student.courses.id(courseID).code = req.body.code
+
+                student.save(function (err, student) {
+                    if (err) {
+                        console.log("Error updating student course");
+                        res.status(500).json({ "Message": "Sorry! ... Error updating student course" });
                     }
-                }
-                if (!courseFound) {
-                    console.log("Course ID doesn't exist");
-                    res.status(404).json({ "Message": "Course ID doesn't exist" });
-                    return;
-                }
+                    else {
+                        res.status(200).json({ "Message": "Student course successfully updated", student });
+                    }
+                });
             }
         });
     }

@@ -1,10 +1,17 @@
+require("dotenv").config({"path":".env"})
 const { urlencoded } = require("express");
 const express = require("express");
 const route = require("./api/routes");
 require("./api/data/dbConnection");
 
 const app = express();
-app.set("port",3000);
+
+if(isNaN(process.env.PORT)){
+    process.env.PORT = 6000;
+}
+process.env.PORT = process.env.PORT || 6000
+
+app.set("port",process.env.PORT);
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json({extended:false}))
