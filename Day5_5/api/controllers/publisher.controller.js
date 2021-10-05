@@ -89,7 +89,8 @@ module.exports.updateGamePublisher = function(req,res){
                 res.status(404).json({"Message":"Game ID not found"});
             }
             else{
-                game.publisher=req.body.publisher
+                game.publisher.name = req.body.name;
+                game.publisher.country = req.body.country
                 game.save(function(err,updatedGamePublisher){
                     if(err){
                         console.log("Sorry! couldn't update game publisher");
