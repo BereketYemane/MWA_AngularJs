@@ -9,6 +9,7 @@ const app = express();
 if(isNaN(process.env.PORT)){
     process.env.PORT = 6000;
 }
+
 process.env.PORT = process.env.PORT || 6000
 
 app.set("port",process.env.PORT);
