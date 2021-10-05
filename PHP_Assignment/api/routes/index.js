@@ -12,10 +12,12 @@ router.route("/teams/:teamID").get(teamsController.getOneTeam)
     .delete(teamsController.deleteOneTeam);
 
 router.route("/teams/:teamID/players").get(playerController.getAllTeamPlayers)
-.post(playerController.addTeamPlayers);
+.post(playerController.addTeamPlayer);
 
 
-router.route("/teams/:teamID/players/:playerID").get(playerController.getOneTeamPlayer);
+router.route("/teams/:teamID/players/:playerID").get(playerController.getOneTeamPlayer)
+.put(playerController.updateTeamPlayer)
+.delete(playerController.deleteTeamPlayer);
 
 
 module.exports = router;

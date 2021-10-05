@@ -59,21 +59,6 @@ module.exports.getOneGameReview = function (req, res) {
                     res.status(404).json({ "Message": "Game ID doesn't exist" });
                 }
                 else {
-                    // console.log("Found reviews");
-                    // var reviewFound = false;
-                    // for (let i = 0; i < game.reviews.length; i++) {
-                    //     if (game.reviews[i].id == reviewID) {
-                    //         console.log("Review found");
-                    //         reviewFound = true;
-                    //         res.status(200).json(game.reviews[i]);
-                    //         return;
-                    //     }
-                    // }
-                    // if (!reviewFound) {
-                    //     console.log("Review ID doesn't exist");
-                    //     res.status(404).json({ "Message": "Review ID doesn't exist" });
-                    //     return;
-                    // }
                     const review = game.reviews.id(reviewID);
                     console.log("Review found");
                     res.status(200).json(review);
@@ -101,7 +86,7 @@ module.exports.addGameReviews = function (req, res) {
                 res.status(404).json({ "Message": "Game ID not found" });
             }
             else {
-                const newReview = req.body.review;
+                const newReview = req.body;
                     game.reviews.push(newReview);
                     game.save(function (err, addedReviews) {
                         if (err) {

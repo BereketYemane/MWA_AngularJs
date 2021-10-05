@@ -60,27 +60,14 @@ module.exports.getOneTeamPlayer = function (req, res) {
                 }
                 else {
                     console.log("Found players");
-                    var playerFound = false;
-                    for (let i = 0; i < team.players.length; i++) {
-                        if (team.players[i].id == playerID) {
-                            console.log("player found");
-                            playerFound = true;
-                            res.status(200).json(team.players[i]);
-                            return;
-                        }
-                    }
-                    if (!playerFound) {
-                        console.log("player ID doesn't exist");
-                        res.status(404).json({ "Message": "player ID doesn't exist" });
-                        return;
-                    }
+                    res.status(200).json(team.players.id(playerID))
                 }
             }
         });
     }
 };
 
-module.exports.addTeamPlayers = function (req, res) {
+module.exports.addTeamPlayer = function (req, res) {
     console.log("POST a team player request");
     const teamID = req.params.teamID;
     if (!mongoose.isValidObjectId(teamID)) {
@@ -99,18 +86,103 @@ module.exports.addTeamPlayers = function (req, res) {
                 res.status(404).json({ "Message": "team ID not found" });
             }
             else {
-                const newPlayer = req.body.player;
-                    team.players.push(newPlayer);
-                    team.save(function (err, addedPlayer) {
-                        if (err) {
-                            console.log("Sorry! couldn't add player");
-                            res.status(500).json({ "Message": "Sorry! couldn't add player" });
-                        }
-                        else {
-                            console.log("player successfully added");
-                            res.status(200).json({ "Message": "player successfully added", addedPlayer });
-                        }
-                    }); 
+                const newPlayer = req.body;
+                team.players.push(newPlayer);
+                team.save(function (err, addedPlayer) {
+                    if (err) {
+                        console.log("Sorry! couldn't add player");
+                        res.status(500).json({ "Message": "Sorry! couldn't add player" });
+                    }
+                    else {
+                        console.log("player successfully added");
+                        res.status(200).json({ "Message": "player successfully added", addedPlayer });
+                    }
+                });
+            }
+        });
+    }
+};
+
+module.exports.updateTeamPlayer = function (req, res) {
+    console.log("Put a team player request");
+    const teamID = req.params.teamID;
+    const playerID = req.params.playerID;
+    if (!mongoose.isValidObjectId(teamID)) {
+        console.log("Invalid team ID");
+        res.status(404).json({ "Message": "Invalid team ID" });
+        return;
+    }
+    else if (!mongoose.isValidObjectId(playerID)) {
+        console.log("Invalid player ID");
+        res.status(404).json({ "Message": "Invalid player ID" });
+        return;
+    }
+    else {
+        teams.findById(teamID).select("players").exec(function (err, team) {
+            if (err) {
+                console.log("Error finding a team");
+                res.status(500).json({ "Message": "Sorry! ... Error finding a team" });
+                return;
+            }
+            else if (!team) {
+                console.log(("Team ID doesn't exist"));
+                res.status(404).json({ "Message": "Team ID not found" });
+            }
+            else {
+                team.players.id(playerID).name = req.body.name
+                team.players.id(playerID).age = req.body.age
+                team.save(function (err, team) {
+                    if (err) {
+                        console.log("Error updating team player");
+                        res.status(500).json({ "Message": "Sorry! ... Error updating team player" });
+                    }
+                    else {
+                        res.status(200).json({ "Message": "team player successfully updated", team });
+                    }
+                });
+
+            }
+        });
+    }
+};
+
+module.exports.deleteTeamPlayer = function (req, res) {
+    const teamID = req.params.teamID;
+    const playerID = req.params.playerID;
+
+    console.log("DELETE a team player request");
+    if (!mongoose.isValidObjectId(teamID)) {
+        console.log("Invalid team ID");
+        res.status(404).json({ "Message": "Invalid team ID" });
+        return;
+    }
+    else if (!mongoose.isValidObjectId(playerID)) {
+        console.log("Invalid player ID");
+        res.status(404).json({ "Message": "Invalid player ID" });
+        return;
+    }
+    else {
+        teams.findById(teamID).select("players").exec(function (err, team) {
+            if (err) {
+                console.log("Error finding a team");
+                res.status(500).json({ "Message": "Error finding a team" });
+            }
+            else if (!team) {
+                console.log("Team id not found");
+                res.status(404).json({ "Message": "Team id not found" });
+            }
+            else {
+                console.log("Found Players");
+                team.players.id(playerID).remove();
+                team.save(function (err, team) {
+                    if (err) {
+                        console.log("Error deleting team player");
+                        res.status(500).json({ "Message": "Sorry! ... Error deleting team player" });
+                    }
+                    else {
+                        res.status(200).json({ "Message": "team player successfully deleted", team});
+                    }
+                });
             }
         });
     }

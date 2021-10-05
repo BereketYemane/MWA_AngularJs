@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+require("dotenv").config({"path":".env"})
 
-const dbName = "VolleyballDB";
-const dbURL = "mongodb://localhost:27017/"+dbName;
+const dbName = process.env.DATABASE_NAME;
+const dbURL = process.env.DATABASE_URL+dbName;
 require("./team-model");
 
 mongoose.connect(dbURL);
