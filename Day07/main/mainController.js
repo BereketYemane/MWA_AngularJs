@@ -1,7 +1,7 @@
 angular.module("myApp").controller("mainController", mainController);
-function mainController(GameFactory) {
+function mainController(AnimeFactory) {
     const vm= this;
-    GameFactory.getPosts().then(function(response) {
+    AnimeFactory.Animes().then(function(response) {
     vm.Animes= response.data;
 
     });

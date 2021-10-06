@@ -1,9 +1,9 @@
-angular.module("myApp").factory("GameFactory", GameFactory);
-function GameFactory($http) {
+angular.module("myApp").factory("AnimeFactory", AnimeFactory);
+function AnimeFactory($http) {
 return {
-getPosts: getPosts,
+Animes: getAnimes,
 };
-function getPosts() {
+function getAnimes() {
 return $http.get("https://anime-facts-rest-api.herokuapp.com/api/v1").then(complete).catch(failed);
 }
 function complete(response) {
