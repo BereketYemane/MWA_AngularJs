@@ -1,7 +1,8 @@
-angular.module("myControllerApp").controller("MainController", MainController);
-function MainController(JokeFactory) {
+angular.module("myApp").controller("mainController", mainController);
+function mainController(GameFactory) {
     const vm= this;
-    JokeFactory.getTenJokes().then(function(response) {
-    vm.jokes= response;
+    GameFactory.getPosts().then(function(response) {
+    vm.Animes= response.data;
+
     });
     }

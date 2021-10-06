@@ -1,10 +1,10 @@
-angular.module("myControllerApp", ['ngRoute']).config(config);
+angular.module("myApp", ["ngRoute"]).config(config);
 function config($routeProvider) {
 $routeProvider.when("/", {
 templateUrl: "main/main.html",
-controller: "MainController",
+controller: "mainController",
 controllerAs: "mainCtrl"
 }).otherwise({
     redirectTo: "/"
-    });;
+    });
 }
