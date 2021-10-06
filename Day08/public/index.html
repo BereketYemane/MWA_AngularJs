@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="meanGames">
 
 <head>
     <title>MEAN
@@ -9,7 +9,9 @@
 </head>
 
 <body>
-    <h1>MEAN Games homepage.</h1>
+    <div ng-view>
+
+    </div>
     <footer class="footer">
         <div class="container">
             <p class="text-muted text-center">
@@ -22,6 +24,13 @@
             </p>
         </div>
     </footer>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="./Angularjs-app/angularApp.js"></script>
+    <script src="./Angularjs-app/games/games-controller.js"></script>
+    <script src="./Angularjs-app/gamesFactory/gamesFactory.js"></script>
+    <script src="./Angularjs-app/game/game-controller.js"></script>
+    <script src="./Angularjs-app/game-rating/rating-directive.js"></script>
 </body>
 
 </html>
