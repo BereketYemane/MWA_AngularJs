@@ -1,0 +1,6 @@
+<h1>{{vm.country}}</h1><br/>
+<ul>
+    <li ng-repeat="team in vm.teams"> 
+        <a ng-href="#/teams/{{team._id}}">{{team.country}}</a>
+    </li>
+</ul>

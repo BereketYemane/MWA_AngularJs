@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="meanGames">
+<html lang="en" ng-app="volleyballTeams">
 
 <head>
-    <title>MEAN
-        Games</title>
+    <title>Volleyball Teams</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div ng-view>
-
-    </div>
+    <!-- <h1>Volleyball Teams Homepage.</h1> -->
+    <div ng-view> </div>
     <footer class="footer">
         <div class="container">
             <p class="text-muted text-center">
@@ -24,13 +22,13 @@
             </p>
         </div>
     </footer>
-    <script src="node_modules/angular/angular.min.js"></script>
-    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.min.js"></script>
     <script src="./angularjs-app/angularApp.js"></script>
-    <script src="./angularjs-app/games/games-controller.js"></script>
-    <script src="./angularjs-app/gamesFactory/gamesFactory.js"></script>
-    <script src="./angularjs-app/game/game-controller.js"></script>
-    <script src="./angularjs-app/game-rating/rating-directive.js"></script>
+    <script src="./angularjs-app/teams/teams-controller.js"></script>
+    <script src="./angularjs-app/teams/teams-controller.js"></script>
+    <script src="./angularjs-app/teamFactory/teamFactory.js"></script>
+    <script src="./angularjs-app/team/team-controller.js"></script>
 </body>
 
 </html>

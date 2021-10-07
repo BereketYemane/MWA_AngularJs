@@ -1,6 +1,7 @@
 require("dotenv").config({"path":".env"})
 const express = require("express");
 require("./api/data/dbConnection");
+const path = require("path");
 const route = require("./api/routes");
 
 const app = express();
@@ -19,7 +20,7 @@ app.use(function(req,res,next){
     console.log(req.method,req.url);
     next();
 });
-
+app.use(express.static(path.join(__dirname,"public")));
 app.use("/api",route)
 
 const server = app.listen(app.get("port"),function(){
