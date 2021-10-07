@@ -1,6 +1,6 @@
 <h1>{{vm.title}}</h1><br/>
 <ul>
-    <li ng-repeat="game in vm.games"> 
+    <li ng-repeat="game in vm.games | orderBy:'price'"> 
         <a ng-href="#!/games/{{game._id}}">{{game.title}}</a>
     </li>
 </ul>
