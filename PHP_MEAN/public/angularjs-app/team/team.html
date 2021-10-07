@@ -1,10 +1,10 @@
-<h1>{{vm.team.country}} volleyball national team</h1>
+<h1>{{vm.team.country}}</h1>
 
 
 <p>Date started:{{vm.team.dateStarted | date:'MMM dd/yyyy'}}</p>
 <p>Players:</p> <ul>
         <li ng-repeat="player in vm.team.players | orderBy:'age'"> 
-           {{player.name}}  :  {{player.age}}
+           Name: {{player.name}}  :  Age:{{player.age}} years
         </li>
  
     </ul>
