@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="volleyballTeams">
+
+<head>
+    <title>Volleyball Teams</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- <h1>Volleyball Teams Homepage.</h1> -->
+    <div ng-view> </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted text-center">
+                <a href="https://compro.miu.edu" target="_blank"><img src="images/compro-web-logo-442x112.png"
+                        height="60" alt="MIU Compro"></a><br />
+                <small class="textblack-50 text-center">&copy;
+                    2021 Maharishi International
+                    University. All Rights Reserved.
+                </small>
+            </p>
+        </div>
+    </footer>
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-route/angular-route.min.js"></script>
+    <script src="./angularjs-app/angularApp.js"></script>
+    <script src="./angularjs-app/teams/teams-controller.js"></script>
+    <script src="./angularjs-app/teams/teams-controller.js"></script>
+    <script src="./angularjs-app/teamsFactory/teamsFactory.js"></script>
+    <script src="./angularjs-app/team/team-controller.js"></script>
+    <script src="./angularjs-app/players/players.js"></script>
+    <script src="./angularjs-app/player/player.js"></script>
+</body>
+
+</html>

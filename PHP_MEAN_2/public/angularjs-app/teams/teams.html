@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" ng-href="#!/">Home</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="text" placeholder="Search team" ng-model="searchName">
+            </form>
+        </div>
+    </div>
+</nav>
+<h1 style="text-align: center; margin-top: 15px;">{{vm.title}}</h1>
+<ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center"
+        ng-repeat="team in vm.teams | orderBy:'country' | filter:searchName">
+        <h3><a ng-href="#!/teams/{{team._id}}" style="text-decoration:none">{{team.country}}</a></h3>
+    </li>
+</ul>
+
+<form name="vm.teamForm" ng-submit="vm.addTeam()" style="position: fixed;bottom: 110px;">
+    <fieldset style="margin-left: 15px;">
+        <legend>Form to add a team</legend>
+        <div class="form-group">
+            <label class="form-control-plaintext">Country</label>
+            <input type="text" name="country" size="21" placeholder="Country" required ng-model="vm.teamCountry">
+        </div>
+        <div class="form-group">
+            <label class="form-control-plaintext">Time Started</label>
+            <input type="date" name="startTime" placeholder="month" required ng-model="vm.timeStarted">
+        </div><br>
+        <button type="submit" class="btn btn-primary">Add Team</button>
+    </fieldset>
+</form>
+
+<div style="position: fixed;right: 15px;bottom: 100px;">
+    <ul class="pagination pagination-lg">
+      <li class="page-item active">
+        <button class="page-link" ng-click="vm.prev()">Previous</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" ng-click="vm.next()">Next</button>
+      </li>
+    </ul>
+  </div>
+  

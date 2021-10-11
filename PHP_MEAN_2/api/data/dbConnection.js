@@ -3,7 +3,7 @@ require("dotenv").config({"path":".env"})
 
 const dbName = process.env.DATABASE_NAME;
 const dbURL = process.env.DATABASE_URL+dbName;
-require("./games-model");
+require("./team-model");
 
 mongoose.connect(dbURL);
 
@@ -23,7 +23,7 @@ process.on("SIGINT",function(){
     mongoose.connection.close(function(){
         console.log("Mongoose disconnected by app termination");
         process.exit(0);
-    })
+    });
 });
 
 process.on("SIGTERM",function(){

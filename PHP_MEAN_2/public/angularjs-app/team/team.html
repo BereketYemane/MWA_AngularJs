@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarColor02">
+         <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+               <a class="nav-link" ng-href="#!/">Home</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" ng-href="#!/teams">Teams</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" ng-href="#!/teams/{{vm.team._id}}/players">Players</a>
+            </li>
+         </ul>
+         <form class="d-flex">
+            <input class="form-control me-sm-2" type="text" placeholder="Search player" ng-model="searchName">
+         </form>
+      </div>
+   </div>
+</nav>
+<h2 style="margin-top: 10px;">Team:{{vm.team.country}}</h2>
+<h2>Date started: {{vm.team.dateStarted | date:'MMM dd/yyyy'}}</h2>
+<h1 style="text-align: center;">List of Players</h1>
+
+<table class="table table-hover">
+   <thead>
+      <tr>
+         <th scope="col">Number</th>
+         <th scope="col">Name</th>
+         <th scope="col">Birthdate</th>
+         <th scope="col">Height(k.g)</th>
+         <th scope="col">Weight(cm)</th>
+      </tr>
+   </thead>
+   <tr class="table-active" ng-repeat="player in vm.team.players | orderBy:'name' | filter:searchName">
+      <td>{{player.number}}</td>
+      <td>{{player.name}}</td>
+      <td>{{player.birthdate | date:"MMM dd/yyyy"}}</td>
+      <td>{{player.height}}</td>
+      <td>{{player.weight}}</td>
+   </tr>
+   </tbody>
+</table><br/>
+
+<form name="vm.teamForm" ng-submit="vm.updateTeam(vm.team._id)" style="position: fixed;bottom: 110px;">
+   <fieldset style="margin-left: 15px;">
+       <legend>Form to update a team</legend>
+       <div class="form-group">
+           <label class="form-control-plaintext">Country</label>
+           <input type="text" name="country" size="21" placeholder="Country" required ng-model="vm.teamCountry">
+       </div>
+       <div class="form-group">
+           <label class="form-control-plaintext">Time Started</label>
+           <input type="date" name="startTime" placeholder="month" required ng-model="vm.timeStarted">
+       </div><br>
+       <button type="submit" class="btn btn-primary">update Team</button>
+       <a ng-href="/#!/"><button type="button" class="btn btn-warning" ng-click="vm.deleteTeam(vm.team._id)">Delete team</button></a>
+
+   </fieldset>
+</form>

@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+       <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+             <li class="nav-item">
+                <a class="nav-link" ng-href="#!/">Home</a>
+             </li>
+             <li class="nav-item">
+                <a class="nav-link" ng-href="#!/teams/{{vm.team._id}}">Team</a>
+             </li>
+          </ul>
+          <form class="d-flex">
+             <input class="form-control me-sm-2" type="text" placeholder="Search player" ng-model="searchName">
+          </form>
+       </div>
+    </div>
+ </nav><br>
+
+ <table class="table table-hover">
+    <thead>
+       <tr>
+          <th scope="col">Number</th>
+          <th scope="col">Name</th>
+          <th scope="col">Birthdate</th>
+          <th scope="col">Height(k.g)</th>
+          <th scope="col">Weight(cm)</th>
+       </tr>
+    </thead>
+    
+    <tr class="table-active" ng-repeat="player in vm.team.players | filter:searchName">
+       
+       <td><a ng-href="#!/teams/{{vm.team._id}}/players/{{player._id}}">{{player.number}}</a></td> 
+       <td>{{player.name}}</td>
+       <td>{{player.birthdate | date:"MMM dd/yyyy"}}</td>
+       <td>{{player.height}}</td>
+       <td>{{player.weight}}</td>
+      
+    </tr>
+    </tbody>
+ </table>
+ <form name="vm.playersForm" ng-submit="vm.addPlayer()" style="position: fixed;bottom: 110px;">
+    <fieldset style="margin-left: 15px;">
+        <legend>Form to add a player</legend>
+        <div class="form-group">
+            <label class="form-control-plaintext">Jersey number</label>
+            <input type="number" name="number" size="21" placeholder="Jersey number" required ng-model="vm.number">
+        </div>
+        <div class="form-group">
+            <label class="form-control-plaintext">Name</label>
+            <input type="text" name="name" placeholder="name" required ng-model="vm.name">
+        </div>
+        <div class="form-group">
+            <label class="form-control-plaintext">Birthdate</label>
+            <input type="date" name="birthdate" size="21" placeholder="birthdate" required ng-model="vm.birthdate">
+        </div>
+        <div class="form-group">
+            <label class="form-control-plaintext">Height</label>
+            <input type="number" name="height" size="21" placeholder="height" required ng-model="vm.height">
+        </div>
+        <div class="form-group">
+            <label class="form-control-plaintext">Weight</label>
+            <input type="number" name="weight" size="21" placeholder="weight" required ng-model="vm.weight">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Add player</button>
+    </fieldset>
+</form>
