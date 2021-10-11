@@ -17,6 +17,11 @@ function routeMap($routeProvider){
         controllerAs:"vm"
     }).when("/teams/:teamId/players/:playerId",{
         templateUrl:"angularjs-app/player/player.html",
+        controller:"playerController",
+        controllerAs:"vm"
+    }).when("/register",{
+        templateUrl:"angularjs-app/register/register.html",
+        controller:"reigsterController",
         controllerAs:"vm"
     }).otherwise({
         redirectTo:"/"

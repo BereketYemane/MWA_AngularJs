@@ -8,7 +8,12 @@ function teamsFactory($http) {
         deleteTeam:deleteOne,
         updateTeam:updateOne,
         getAllTeamPlayers:getAllTeamPlayers,
-        addTeamPlayer:addplayer
+        addTeamPlayer:addPlayer,
+        getTeamPlayer:getPlayer,
+        updateTeamPlayer:updatePlayer,
+        deleteTeamPlayer:deletePlayer,
+        
+        addUser: addUser
     }
 
     function getAll(offset) {
@@ -29,10 +34,23 @@ function teamsFactory($http) {
     function getAllTeamPlayers(teamId) {
         return $http.get("/api/teams/"+teamId+"/players").then(complete).catch(failed);
     }
-    function addplayer(teamId,player) {
+    function addPlayer(teamId,player) {
         return $http.post("/api/teams/"+teamId+"/players",player).then(complete).catch(failed);
     }
+    function getPlayer(teamId,playerId) {
+        return $http.get("/api/teams/"+teamId+"/players/"+playerId).then(complete).catch(failed);
+    }
 
+    function updatePlayer(teamId,playerId,player) {
+        return $http.put("/api/teams/"+teamId+"/players/"+playerId,player).then(complete).catch(failed);
+    }
+    function deletePlayer(teamId,playerId) {
+        return $http.delete("/api/teams/"+teamId+"/players/"+playerId).then(complete).catch(failed);
+    }
+
+    function addUser(newUser) {
+        return $http.post("/api/users",newUser).then(complete).catch(failed);
+     }
 
     function complete(response){
         return response.data;

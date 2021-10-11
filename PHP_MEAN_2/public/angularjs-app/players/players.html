@@ -29,11 +29,11 @@
     
     <tr class="table-active" ng-repeat="player in vm.team.players | filter:searchName">
        
-       <td><a ng-href="#!/teams/{{vm.team._id}}/players/{{player._id}}">{{player.number}}</a></td> 
-       <td>{{player.name}}</td>
-       <td>{{player.birthdate | date:"MMM dd/yyyy"}}</td>
-       <td>{{player.height}}</td>
-       <td>{{player.weight}}</td>
+       <td><a ng-href="#!/teams/{{vm.team._id}}/players/{{player._id}}" style="text-decoration: none;">{{player.number}}</a></td> 
+       <td><a ng-href="#!/teams/{{vm.team._id}}/players/{{player._id}}" style="text-decoration: none;">{{player.name}}</a></td>
+       <td><a ng-href="#!/teams/{{vm.team._id}}/players/{{player._id}}" style="text-decoration: none;">{{player.birthdate | date:"MMM dd/yyyy"}}</a></td>
+       <td><a ng-href="#!/teams/{{vm.team._id}}/players/{{player._id}}" style="text-decoration: none;">{{player.height}}</a></td>
+       <td><a ng-href="#!/teams/{{vm.team._id}}/players/{{player._id}}" style="text-decoration: none;">{{player.weight}}</a></td>
       
     </tr>
     </tbody>

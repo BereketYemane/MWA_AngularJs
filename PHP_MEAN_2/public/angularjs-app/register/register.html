@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+       <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+             <li class="nav-item">
+                <a class="nav-link" ng-href="#!/">Home</a>
+             </li>
+          </ul>
+       </div>
+    </div>
+ </nav>
+<form name="vm.userForm" ng-submit="vm.addUser()">
+    <fieldset style="margin-left: 15px;">
+        <legend>Form to register</legend>
+        <div class="form-group">
+            <label class="form-control-plaintext">Username</label>
+            <input type="text" name="username" size="21" placeholder="username" required ng-model="vm.username">
+        </div>
+        <div class="form-group">
+            <label class="form-control-plaintext">Password</label>
+            <input type="password" name="password" size="21" placeholder="password" required ng-model="vm.password">
+        </div>
+        <div class="form-group">
+            <label class="form-control-plaintext">Name</label>
+            <input type="text" name="name" size="21" placeholder="name" required ng-model="vm.name">
+        </div><br>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </fieldset>
+</form>

@@ -4,6 +4,7 @@ require("dotenv").config({"path":".env"})
 const dbName = process.env.DATABASE_NAME;
 const dbURL = process.env.DATABASE_URL+dbName;
 require("./team-model");
+require("./user-model");
 
 mongoose.connect(dbURL);
 
