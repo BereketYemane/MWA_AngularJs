@@ -21,6 +21,11 @@ app.use(function(req,res,next){
     console.log(req.method,req.url);
     next();
 });
+app.use("/api",function(req,res,next){
+    res.header("Access-Control-Allow-origin","http://localhost:4200");
+    res.header("Access-Control-Allow-header","Origin,X-Requested-with, content-Type,Accept");
+    next();
+});
 app.use(express.static(path.join(__dirname,"public")));
 app.use("/api",route);
 
